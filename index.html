@@ -44,9 +44,22 @@ button:hover {
     // 1. Date Button Logic
     document.querySelector('button').addEventListener('click', function() {
         const now = new Date();
-        const dateStr = now.toLocaleDateString('en-GB');
-        document.getElementById('date-display').innerText = "Today's Date: " + dateStr;
+        
+        // This forces the format: 7 June 2026
+        const dateStr = now.toLocaleDateString('en-GB', { 
+            day: 'numeric', 
+            month: 'long', 
+            year: 'numeric'
     });
+     
+   // Update the screen
+        document.getElementById('date-display').innerText = "Today is: " + dateStr;
+        
+        // This makes the computer speak the date clearly
+        const msg = new SpeechSynthesisUtterance("Today is " + dateStr);
+        window.speechSynthesis.speak(msg);
+    });
+     
     
     // 2. Gallery Logic
     const dramas = [
