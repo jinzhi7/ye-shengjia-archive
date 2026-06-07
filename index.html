@@ -1,103 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
- <style>
-button {
-    background: transparent;
-    border: 1px solid #00f2ff;
-    color: #00f2ff;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-family: 'Courier New', monospace;
-    font-size: 1rem;
-}
-button:hover {
-    background: #00f2ff;
-    color: #050505;
-}
-    body { background: #050505; color: #00f2ff; font-family: 'Courier New', monospace; padding: 20px; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card { border: 1px solid #00f2ff; padding: 15px; border-radius: 10px; background: rgba(0, 242, 255, 0.05); }
-    
-    /* This change makes the whole image fit inside the space without cropping! */
-    .card img { 
-        width: 100%; 
-        height: auto; 
-        max-height: 400px; 
-        object-fit: contain; 
-        border-radius: 5px; 
-        margin-bottom: 10px; 
-    }
-    h1 { text-align: center; border-bottom: 1px solid #00f2ff; padding-bottom: 10px; }
-</style>
+    <style>
+        body { background: #050505; color: #00f2ff; font-family: 'Courier New', monospace; padding: 20px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { border: 1px solid #00f2ff; padding: 15px; border-radius: 10px; background: rgba(0, 242, 255, 0.05); }
+        .card img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 5px; margin-bottom: 10px; }
+        h1 { text-align: center; border-bottom: 1px solid #00f2ff; padding-bottom: 10px; margin-top: 50px; }
+    </style>
 </head>
 <body>
-     <div style="text-align: center; margin-bottom: 20px;">
+    <div style="text-align: center; margin-bottom: 20px;">
         <h3 id="date-display">--/--/----</h3>
     </div>
 
     <h1>YE SHENGJIA'S DRAMA ARCHIVE</h1>
     <div id="gallery" class="gallery"></div>
 
-   <script>
-   // 1. Show date automatically when page loads
-    window.onload = function() {
-        const now = new Date();
-        const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-        document.getElementById('date-display').innerText = "Archive Status: " + dateStr;
-    };
-
-    // 2. Speak the date only when you click the page
-    document.body.addEventListener('click', function() {
-        const dateText = document.getElementById('date-display').innerText;
-        const msg = new SpeechSynthesisUtterance(dateText);
-        window.speechSynthesis.speak(msg);
-    }, { once: true }); // This ensures it only speaks once after you click
-     
-    // 2. Gallery Logic
-    const dramas = [
-        { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor", poster: "https://i.mydramalist.com/dYA1zf.jpg" },
-        { title: "A Love So Romantic", year: "2020", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/rXvXp_4f.jpg" },
-        { title: "Mirror: A Tale of Twin Cities", year: "2022", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/d50nW_4f.jpg" },
-        { title: "Hello my love", year: "2022", platform: "Iqiyi", role: "Supporting Actor", poster: "https://i.mydramalist.com/BKwWb_4f.jpg" },
-        { title: "My marvellous fable", year: "2023", platform: "Mangotv", role: "Supporting Actor", poster: "https://i.mydramalist.com/kA0NKw_4f.jpg" },
-        { title: "The longest promise", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/jQjBPJ_4f.jpg" },
-        { title: "Zhuo Zhuo Feng Liu", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/qYn7X0_4f.jpg" },
-        { title: "Fortune Writer", year: "2024", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/d0AzN5_4f.jpg" },
-        { title: "Sword and fairy 1", year: "2024", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/1wE7Eb_4f.jpg" },
-        { title: "Blossom", year: "2024", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/Dk76P2_4f.jpg" },
-        { title: "The Rebirth", year: "2025", platform: "Sohu", role: "Lead Actor", poster: "https://i.mydramalist.com/mOLWo3_4f.jpg" },
-        { title: "The Glided Vortex", year: "2025", platform: "Kuai Shou", role: "Lead Actor", poster: "https://i.mydramalist.com/JBO45j_4f.jpg" },
-        { title: "Dragon King's Decree", year: "2025", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/nOymK4_4f.jpg" },
-        { title: "The Eternal Fragrance", year: "2026 (Upcoming)", platform: "Youku", role: "Supporting Actor", poster: "https://i.mydramalist.com/oQBWkk_4f.jpg" },
-        { title: "Live Long And Prosper", year: "2026 (Upcoming)", platform: "Mangotv", role: "Supporting Actor", poster: "https://i.mydramalist.com/81oA2A_4f.jpg" }
-    ];
-
-    const gallery = document.getElementById('gallery');
-    dramas.forEach(drama => {
-        gallery.innerHTML += `
-            <div class="card">
-                <img src="${drama.poster}" alt="${drama.title}">
-                <h2>${drama.title}</h2>
-                <p>Year: ${drama.year} | ${drama.role}</p>
-                <p style="color: #ff00ff;">Platform: ${drama.platform}</p>
-            </div>
-        `;
-    });
-    <h1 style="margin-top: 50px;">UPCOMING DRAMA TRAILERS</h1>
+    <h1>UPCOMING DRAMA TRAILERS</h1>
     <div id="trailers" class="gallery">
         <div class="card">
             <h2>The Eternal Fragrance</h2>
-           <iframe width="100%" height="200" src="https://www.youtube.com/embed/6Z3WCk7AHBzk?si=-680xtEBxU2Z9RNx" frameborder="0" allowfullscreen></iframe>
-        </div>
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/6Z3WCk7AHBzk" frameborder="0" allowfullscreen></iframe>
         </div>
         <div class="card">
             <h2>Live Long And Prosper</h2>
-           <iframe width="100%" height="200" src="https://www.youtube.com/embed/M3tWvYOPjFI?si=IdZI733F3r6cuEKk" frameborder="0" allowfullscreen></iframe>
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/M3tWvYOPjFI" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
-    
-</script>
+
+    <script>
+        window.onload = function() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            document.getElementById('date-display').innerText = "Archive Status: " + dateStr;
+        };
+
+        document.body.addEventListener('click', function() {
+            const dateText = document.getElementById('date-display').innerText;
+            const msg = new SpeechSynthesisUtterance(dateText);
+            window.speechSynthesis.speak(msg);
+        }, { once: true });
+
+        const dramas = [
+            { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor", poster: "https://i.mydramalist.com/dYA1zf.jpg" },
+            { title: "A Love So Romantic", year: "2020", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/rXvXp_4f.jpg" },
+            { title: "Mirror: A Tale of Twin Cities", year: "2022", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/d50nW_4f.jpg" },
+            { title: "Hello my love", year: "2022", platform: "Iqiyi", role: "Supporting Actor", poster: "https://i.mydramalist.com/BKwWb_4f.jpg" },
+            { title: "My marvellous fable", year: "2023", platform: "Mangotv", role: "Supporting Actor", poster: "https://i.mydramalist.com/kA0NKw_4f.jpg" },
+            { title: "The longest promise", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/jQjBPJ_4f.jpg" },
+            { title: "Zhuo Zhuo Feng Liu", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/qYn7X0_4f.jpg" },
+            { title: "Fortune Writer", year: "2024", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/d0AzN5_4f.jpg" },
+            { title: "Sword and fairy 1", year: "2024", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/1wE7Eb_4f.jpg" },
+            { title: "Blossom", year: "2024", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/Dk76P2_4f.jpg" },
+            { title: "The Rebirth", year: "2025", platform: "Sohu", role: "Lead Actor", poster: "https://i.mydramalist.com/mOLWo3_4f.jpg" },
+            { title: "The Glided Vortex", year: "2025", platform: "Kuai Shou", role: "Lead Actor", poster: "https://i.mydramalist.com/JBO45j_4f.jpg" },
+            { title: "Dragon King's Decree", year: "2025", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/nOymK4_4f.jpg" },
+            { title: "The Eternal Fragrance", year: "2026 (Upcoming)", platform: "Youku", role: "Supporting Actor", poster: "https://i.mydramalist.com/oQBWkk_4f.jpg" },
+            { title: "Live Long And Prosper", year: "2026 (Upcoming)", platform: "Mangotv", role: "Supporting Actor", poster: "https://i.mydramalist.com/81oA2A_4f.jpg" }
+        ];
+
+        const gallery = document.getElementById('gallery');
+        dramas.forEach(drama => {
+            gallery.innerHTML += `
+                <div class="card">
+                    <img src="${drama.poster}" alt="${drama.title}">
+                    <h2>${drama.title}</h2>
+                    <p>Year: ${drama.year} | ${drama.role}</p>
+                    <p style="color: #ff00ff;">Platform: ${drama.platform}</p>
+                </div>
+            `;
+        });
+    </script>
 </body>
 </html>
-
