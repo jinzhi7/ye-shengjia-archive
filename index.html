@@ -30,17 +30,21 @@
     </div>
 
     <script>
-        window.onload = function() {
-            const now = new Date();
-            const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-            document.getElementById('date-display').innerText = "Archive Status: " + dateStr;
-        };
+   // 1. Show date automatically when page loads
+    window.onload = function() {
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('date-display').innerText = "Archive Status: " + dateStr;
+    };
 
-        document.body.addEventListener('click', function() {
-            const dateText = document.getElementById('date-display').innerText;
-            const msg = new SpeechSynthesisUtterance(dateText);
-            window.speechSynthesis.speak(msg);
-        }, { once: true });
+    // 2. ONLY the date display triggers the sound
+    const dateElement = document.getElementById('date-display');
+    dateElement.style.cursor = "pointer"; // Makes it look clickable
+    dateElement.addEventListener('click', function() {
+        const dateText = dateElement.innerText;
+        const msg = new SpeechSynthesisUtterance(dateText);
+        window.speechSynthesis.speak(msg);
+    }, { once: true });
 
         const dramas = [
             { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor", poster: "ENDLESS EIGHTEEN.jpg" },
