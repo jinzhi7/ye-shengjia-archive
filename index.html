@@ -3,19 +3,21 @@
 <head>
     <style>
         body { background: #050505; color: #00f2ff; font-family: 'Courier New', monospace; padding: 20px; }
-        .card { border: 1px solid #00f2ff; padding: 20px; margin: 10px; border-radius: 10px; background: rgba(0, 242, 255, 0.05); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { border: 1px solid #00f2ff; padding: 15px; border-radius: 10px; background: rgba(0, 242, 255, 0.05); }
+        .card img { width: 100%; height: 300px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; }
         h1 { text-align: center; border-bottom: 1px solid #00f2ff; padding-bottom: 10px; }
     </style>
 </head>
 <body>
     <h1>YE SHENGJIA ARCHIVE</h1>
-    <div id="gallery"></div>
+    <div id="gallery" class="gallery"></div>
 
     <script>
-  const dramas = [
-            { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor" },
-            { title: "A Love So Romantic", year: "2020", platform: "WeTV (Tencent)", role: "Lead Actor" },
-            { title: "Mirror: A Tale of Twin Cities", year: "2022", platform: "WeTV (Tencent)", role: "Supporting Actor" },
+        const dramas = [
+            { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor", poster: " https://i.mydramalist.com/dYA1zf.jpg" },
+{ title: "A Love So Romantic", year: "2020", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/rXvXp_4f.jpg" },
+{ title: "Mirror: A Tale of Twin Cities", year: "2022", platform: "WeTV (Tencent)", role: "Supporting Actor" },
             { title: "Hello my love", year: "2022", platform: "Iqiyi", role: "Supporting Actor" },
             { title: "My marvellous fable", year: "2023", platform: "Mangotv", role: "Supporting Actor" },
             { title: "The longest promise", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor" },
@@ -32,16 +34,16 @@
 
         const gallery = document.getElementById('gallery');
         dramas.forEach(drama => {
-    gallery.innerHTML += `
-        <div class="card">
-            <h2>${drama.title}</h2>
-            <p>Released: ${drama.year}</p>
-            <p>Platform: ${drama.platform}</p>
-            <p style="color: #ff00ff;">Role: ${drama.role}</p> 
-        </div>
-    `;
-});
-
+            gallery.innerHTML += `
+                <div class="card">
+                    <img src="${drama.poster}" alt="${drama.title}">
+                    <h2>${drama.title}</h2>
+                    <p>Year: ${drama.year} | ${drama.role}</p>
+                    <p style="color: #ff00ff;">Platform: ${drama.platform}</p>
+                </div>
+            `;
+        });
     </script>
 </body>
 </html>
+
