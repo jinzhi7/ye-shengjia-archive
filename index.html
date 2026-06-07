@@ -25,13 +25,16 @@
 
         const gallery = document.getElementById('gallery');
         dramas.forEach(drama => {
-            gallery.innerHTML += `
-                <div class="card">
-                    <h2>${drama.title}</h2>
-                    <p>Released: ${drama.year} | Platform: ${drama.platform}</p>
-                </div>
-            `;
-        });
+    gallery.innerHTML += `
+        <div class="card">
+            <h2>${drama.title}</h2>
+            <p>Released: ${drama.year}</p>
+            <p>Platform: ${drama.platform}</p>
+            <p style="color: #ff00ff;">Role: ${drama.role}</p> 
+        </div>
+    `;
+});
+
     </script>
 </body>
 </html>
