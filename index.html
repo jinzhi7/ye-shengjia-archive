@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background: #050505; color: #00f2ff; font-family: 'Courier New', monospace; padding: 20px; }
+        .card { border: 1px solid #00f2ff; padding: 20px; margin: 10px; border-radius: 10px; background: rgba(0, 242, 255, 0.05); }
+        h1 { text-align: center; border-bottom: 1px solid #00f2ff; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>YE SHENGJIA ARCHIVE</h1>
+    <div id="gallery"></div>
+
+    <script>
+        const dramas = [
+            { title: "A Love So Romantic", year: "2020", platform: "iQIYI" },
+            { title: "Mirror: A Tale of Twin Cities", year: "2022", platform: "WeTV" }
+        ];
+
+        const gallery = document.getElementById('gallery');
+        dramas.forEach(drama => {
+            gallery.innerHTML += `
+                <div class="card">
+                    <h2>${drama.title}</h2>
+                    <p>Released: ${drama.year} | Platform: ${drama.platform}</p>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
