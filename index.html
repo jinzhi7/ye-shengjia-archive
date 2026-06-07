@@ -33,7 +33,6 @@ button:hover {
 </head>
 <body>
      <div style="text-align: center; margin-bottom: 20px;">
-        <button>DISPLAY CURRENT DATE</button>
         <h3 id="date-display">--/--/----</h3>
     </div>
 
@@ -41,24 +40,24 @@ button:hover {
     <div id="gallery" class="gallery"></div>
 
    <script>
-    // 1. Date Button Logic
-    document.querySelector('button').addEventListener('click', function() {
+    // This function runs automatically as soon as the page is ready
+    window.onload = function() {
         const now = new Date();
         
-        // This forces the format: 7 June 2026
+        // Formats the date as: 7 June 2026
         const dateStr = now.toLocaleDateString('en-GB', { 
             day: 'numeric', 
             month: 'long', 
-            year: 'numeric'
-    });
-     
-   // Update the screen
-        document.getElementById('date-display').innerText = "Today is: " + dateStr;
+            year: 'numeric' 
+        });
         
-        // This makes the computer speak the date clearly
-        const msg = new SpeechSynthesisUtterance("Today is " + dateStr);
+        // Update the screen automatically
+        document.getElementById('date-display').innerText = "Archive Status: " + dateStr;
+        
+        // Optional: Comment out the line below if you don't want it to speak
+        const msg = new SpeechSynthesisUtterance("Archive Status: " + dateStr);
         window.speechSynthesis.speak(msg);
-    });
+    };
      
     
     // 2. Gallery Logic
