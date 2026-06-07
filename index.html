@@ -40,44 +40,45 @@ button:hover {
     <h1>YE SHENGJIA'S DRAMA ARCHIVE</h1>
     <div id="gallery" class="gallery"></div>
 
-    <script>
-    // We attach the click event to the button directly
+   <script>
+    // 1. Date Button Logic
     document.querySelector('button').addEventListener('click', function() {
         const now = new Date();
         const dateStr = now.toLocaleDateString('en-GB');
         document.getElementById('date-display').innerText = "Today's Date: " + dateStr;
     });
-    }
-        const dramas = [
-            { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor", poster: " https://i.mydramalist.com/dYA1zf.jpg" },
-            { title: "A Love So Romantic", year: "2020", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/rXvXp_4f.jpg" },
-            { title: "Mirror: A Tale of Twin Cities", year: "2022", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/d50nW_4f.jpg" },
-            { title: "Hello my love", year: "2022", platform: "Iqiyi", role: "Supporting Actor", poster: "https://i.mydramalist.com/BKwWb_4f.jpg" },
-            { title: "My marvellous fable", year: "2023", platform: "Mangotv", role: "Supporting Actor", poster: "https://i.mydramalist.com/kA0NKw_4f.jpg" },
-            { title: "The longest promise", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/jQjBPJ_4f.jpg" },
-            { title: "Zhuo Zhuo Feng Liu", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/qYn7X0_4f.jpg" },
-            { title: "Fortune Writer", year: "2024", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/d0AzN5_4f.jpg" },
-            { title: "Sword and fairy 1", year: "2024", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/1wE7Eb_4f.jpg" },
-            { title: "Blossom", year: "2024", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/Dk76P2_4f.jpg" },
-            { title: "The Rebirth", year: "2025", platform: "Sohu", role: "Lead Actor", poster: "https://i.mydramalist.com/mOLWo3_4f.jpg" },
-            { title: "The Glided Vortex", year: "2025", platform: "Kuai Shou", role: "Lead Actor", poster: "https://i.mydramalist.com/JBO45j_4f.jpg" },
-            { title: "Dragon King's Decree", year: "2025", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/nOymK4_4f.jpg" },
-            { title: "The Eternal Fragrance", year: "2026 (Upcoming)", platform: "Youku", role: "Supporting Actor", poster: "https://i.mydramalist.com/oQBWkk_4f.jpg" },
-            { title: "Live Long And Prosper", year: "2026 (Upcoming)", platform: "Mangotv", role: "Supporting Actor", poster: "https://i.mydramalist.com/81oA2A_4f.jpg" }
-        ];
+    
+    // 2. Gallery Logic
+    const dramas = [
+        { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor", poster: "https://i.mydramalist.com/dYA1zf.jpg" },
+        { title: "A Love So Romantic", year: "2020", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/rXvXp_4f.jpg" },
+        { title: "Mirror: A Tale of Twin Cities", year: "2022", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/d50nW_4f.jpg" },
+        { title: "Hello my love", year: "2022", platform: "Iqiyi", role: "Supporting Actor", poster: "https://i.mydramalist.com/BKwWb_4f.jpg" },
+        { title: "My marvellous fable", year: "2023", platform: "Mangotv", role: "Supporting Actor", poster: "https://i.mydramalist.com/kA0NKw_4f.jpg" },
+        { title: "The longest promise", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/jQjBPJ_4f.jpg" },
+        { title: "Zhuo Zhuo Feng Liu", year: "2023", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/qYn7X0_4f.jpg" },
+        { title: "Fortune Writer", year: "2024", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/d0AzN5_4f.jpg" },
+        { title: "Sword and fairy 1", year: "2024", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/1wE7Eb_4f.jpg" },
+        { title: "Blossom", year: "2024", platform: "WeTV (Tencent)", role: "Supporting Actor", poster: "https://i.mydramalist.com/Dk76P2_4f.jpg" },
+        { title: "The Rebirth", year: "2025", platform: "Sohu", role: "Lead Actor", poster: "https://i.mydramalist.com/mOLWo3_4f.jpg" },
+        { title: "The Glided Vortex", year: "2025", platform: "Kuai Shou", role: "Lead Actor", poster: "https://i.mydramalist.com/JBO45j_4f.jpg" },
+        { title: "Dragon King's Decree", year: "2025", platform: "WeTV (Tencent)", role: "Lead Actor", poster: "https://i.mydramalist.com/nOymK4_4f.jpg" },
+        { title: "The Eternal Fragrance", year: "2026 (Upcoming)", platform: "Youku", role: "Supporting Actor", poster: "https://i.mydramalist.com/oQBWkk_4f.jpg" },
+        { title: "Live Long And Prosper", year: "2026 (Upcoming)", platform: "Mangotv", role: "Supporting Actor", poster: "https://i.mydramalist.com/81oA2A_4f.jpg" }
+    ];
 
-        const gallery = document.getElementById('gallery');
-        dramas.forEach(drama => {
-            gallery.innerHTML += `
-                <div class="card">
-                    <img src="${drama.poster}" alt="${drama.title}">
-                    <h2>${drama.title}</h2>
-                    <p>Year: ${drama.year} | ${drama.role}</p>
-                    <p style="color: #ff00ff;">Platform: ${drama.platform}</p>
-                </div>
-            `;
-        });
-    </script>
+    const gallery = document.getElementById('gallery');
+    dramas.forEach(drama => {
+        gallery.innerHTML += `
+            <div class="card">
+                <img src="${drama.poster}" alt="${drama.title}">
+                <h2>${drama.title}</h2>
+                <p>Year: ${drama.year} | ${drama.role}</p>
+                <p style="color: #ff00ff;">Platform: ${drama.platform}</p>
+            </div>
+        `;
+    });
+</script>
 </body>
 </html>
 
