@@ -40,26 +40,20 @@ button:hover {
     <div id="gallery" class="gallery"></div>
 
    <script>
-    // This function runs automatically as soon as the page is ready
+   // 1. Show date automatically when page loads
     window.onload = function() {
         const now = new Date();
-        
-        // Formats the date as: 7 June 2026
-        const dateStr = now.toLocaleDateString('en-GB', { 
-            day: 'numeric', 
-            month: 'long', 
-            year: 'numeric' 
-        });
-        
-        // Update the screen automatically
+        const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
         document.getElementById('date-display').innerText = "Archive Status: " + dateStr;
-        
-        // Optional: Comment out the line below if you don't want it to speak
-        const msg = new SpeechSynthesisUtterance("Archive Status: " + dateStr);
-        window.speechSynthesis.speak(msg);
     };
+
+    // 2. Speak the date only when you click the page
+    document.body.addEventListener('click', function() {
+        const dateText = document.getElementById('date-display').innerText;
+        const msg = new SpeechSynthesisUtterance(dateText);
+        window.speechSynthesis.speak(msg);
+    }, { once: true }); // This ensures it only speaks once after you click
      
-    
     // 2. Gallery Logic
     const dramas = [
         { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor", poster: "https://i.mydramalist.com/dYA1zf.jpg" },
