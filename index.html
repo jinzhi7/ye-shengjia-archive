@@ -28,10 +28,12 @@
     <div id="gallery" class="gallery"></div>
 
     <script>
-    function showDate() {
-     const now = new Date();
-     const dateStr = now.toLocaleDateString('en-GB'); // This gives DD/MM/YYYY
-     document.getElementById('date-display').innerText = "Today's Date: " + dateStr;
+    // We attach the click event to the button directly
+    document.querySelector('button').addEventListener('click', function() {
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('en-GB');
+        document.getElementById('date-display').innerText = "Today's Date: " + dateStr;
+    });
     }
         const dramas = [
             { title: "Endless Eighteen", year: "2019", platform: "Tencent", role: "Lead Actor", poster: " https://i.mydramalist.com/dYA1zf.jpg" },
