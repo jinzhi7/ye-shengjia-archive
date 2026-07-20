@@ -7,6 +7,8 @@
         .card { border: 1px solid #00f2ff; padding: 15px; border-radius: 10px; background: rgba(0, 242, 255, 0.05); }
         .card img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 5px; margin-bottom: 10px; }
         h1 { text-align: center; border-bottom: 1px solid #00f2ff; padding-bottom: 10px; margin-top: 50px; }
+        a { color: #00f2ff; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -18,14 +20,17 @@
     <img src="shengjia.jpg" alt="Ye Shengjia" style="width: 200px; height: 200px; border-radius: 50%; border: 2px solid #00f2ff; object-fit: cover;">
     </div>
 
+    <h1>SPECIAL FEATURES</h1>
+    <div class="gallery">
+        <div class="card">
+            <h2>Subbed Interview</h2>
+            <p>Exclusive fan-translated interview clip.</p>
+            <p><a href="https://rumble.com/embed/v7akoae/?pub=4pghjk" target="_blank">[ Watch on Rumble ]</a></p>
+        </div>
+    </div>
+
     <h1>YE SHENGJIA'S DRAMA ARCHIVE</h1>
     <div id="gallery" class="gallery"></div>
-
-       <div class="card">
-            <h2>Subbed Interview</h2>
-            <p><a href="https://rumble.com/embed/v7akoae/?pub=4pghjk" target="_blank">Watch the Subbed Interview on Rumble</a></p>
-       </div>
-
     
     <h1>UPCOMING DRAMA TRAILERS</h1>
     <div id="trailers" class="gallery">
@@ -36,7 +41,7 @@
     </div>
 
     <script>
-   // 1. Show date automatically when page loads
+    // 1. Show date automatically when page loads
     window.onload = function() {
         const now = new Date();
         const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
